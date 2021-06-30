@@ -13,7 +13,8 @@ class UserImagePicker extends StatefulWidget {
 class _UserImagePickerState extends State<UserImagePicker> {
   File _pickedImage;
   void _pickImage() async {
-    final file = await ImagePicker().getImage(source: ImageSource.camera);
+    final file = await ImagePicker()
+        .getImage(source: ImageSource.camera, imageQuality: 50, maxWidth: 150);
     final File pickedImageFile = File(file.path);
     setState(() {
       _pickedImage = pickedImageFile;
