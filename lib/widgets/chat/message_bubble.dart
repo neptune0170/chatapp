@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:encrypt/encrypt.dart' as encrypt;
 
 class MessageBubble extends StatelessWidget {
   MessageBubble(

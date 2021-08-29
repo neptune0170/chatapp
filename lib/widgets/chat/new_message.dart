@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:encrypt/encrypt.dart' as encrypt;
 
 class NewMessage extends StatefulWidget {
   @override
@@ -8,6 +9,16 @@ class NewMessage extends StatefulWidget {
 }
 
 class _NewMessageState extends State<NewMessage> {
+  static final keyo = encrypt.Key.fromLength(32);
+  static final iv = encrypt.IV.fromLength(16);
+  static final encrypter = encrypt.Encrypter(encrypt.AES(keyo));
+
+  static encryptAES(text) {
+    final encrypted = encrypter.encrypt(text, iv: iv);
+    print('qwerty ${encrypted.base64}');
+    return encrypted.base64;
+  }
+
   final _controller = new TextEditingController();
   var _enteredMessage = '';
   void _sendMessage() async {
@@ -27,6 +38,7 @@ class _NewMessageState extends State<NewMessage> {
     _controller.clear();
   }
 
+//value ==plain
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,7 +52,8 @@ class _NewMessageState extends State<NewMessage> {
               decoration: InputDecoration(labelText: 'Type a message'),
               onChanged: (value) {
                 setState(() {
-                  _enteredMessage = value;
+                  _enteredMessage = encryptAES(value).toString();
+                  // print('***** $_enteredMessage');
                 });
               },
             ),

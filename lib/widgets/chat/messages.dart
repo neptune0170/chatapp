@@ -2,8 +2,19 @@ import 'package:chatapp/widgets/chat/message_bubble.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:encrypt/encrypt.dart' as encrypt;
 
 class Messages extends StatelessWidget {
+  static final keyo = encrypt.Key.fromLength(32);
+  static final iv = encrypt.IV.fromLength(16);
+  static final encrypter = encrypt.Encrypter(encrypt.AES(keyo));
+
+  static decryptAES(text) {
+    final decrypted = encrypter.decrypt(text, iv: iv);
+    // print(decrypted);
+    return decrypted;
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -31,7 +42,9 @@ class Messages extends StatelessWidget {
                 reverse: true,
                 itemCount: chatDocs.length,
                 itemBuilder: (ctx, index) => MessageBubble(
-                  message: chatDocs[index]['text'],
+                  // message: chatDocs[index]['text'],
+                  message: decryptAES(
+                      encrypt.Encrypted.from64(chatDocs[index]['text'])),
                   userName: chatDocs[index]['username'],
                   userImage: chatDocs[index]['userImage'],
                   isMe: chatDocs[index]['userId'] == futureSnapshot.data.uid,
