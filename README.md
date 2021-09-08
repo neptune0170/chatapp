@@ -1,16 +1,8 @@
-# chatapp
+# Hello Messenger
 
-A new Flutter project.
+Your personal messages to friends and family are end-to-end encrypted. No one outside of your chats, not even us, can read or listen to them.
+**Simple and secure connections, right away**
+## Overview/Images
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![](images/im2.png)
+![](images/img2.PNG)
