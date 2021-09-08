@@ -19,12 +19,12 @@ class MyApp extends StatelessWidget {
         title: 'FlutterChat',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-            primarySwatch: Colors.pink,
-            backgroundColor: Colors.pink,
-            accentColor: Colors.deepPurple,
+            primarySwatch: Colors.teal,
+            backgroundColor: Color(0xff0085cc),
+            accentColor: Color(0xff00437d),
             accentColorBrightness: Brightness.dark,
             buttonTheme: ButtonTheme.of(context).copyWith(
-                buttonColor: Colors.pink,
+                buttonColor: Color(0xff0085cc),
                 textTheme: ButtonTextTheme.primary,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)))),
